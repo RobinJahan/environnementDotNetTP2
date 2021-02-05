@@ -37,8 +37,11 @@ namespace TP2
             #region Q3
             Console.WriteLine("Question 3");
             // Afficher les plaques d'immatriculation de toutes les voitures (une seule fois par voiture) liées à au moins un utilisateur.
-            var r3 = FakeDb.Instance.Users.SelectMany(x => x.Cars.SelectMany(c => c.Registration));
-            Console.WriteLine(r3.ToString());
+            var r3 = FakeDb.Instance.Users.SelectMany(x => x.Cars).Select(c => c.Registration).Distinct();
+            foreach (var item in r3){
+            Console.WriteLine(item);            
+            }
+            
             #endregion
             #region Q4
             Console.WriteLine("Question 4");
