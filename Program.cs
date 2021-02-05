@@ -46,7 +46,14 @@ namespace TP2
             #region Q4
             Console.WriteLine("Question 4");
             // Afficher la ou les voiture(s) avec le plus de kilomètre
-
+            var r4 = FakeDb.Instance.Users.SelectMany(x => x.Cars)
+                                .Distinct()
+                                .Where(x => x.Mileage == FakeDb.Instance.Users
+                                .SelectMany(y => y.Cars)
+                                .Distinct()
+                                .Max(y => y.Mileage));
+            foreach (var item in r4){
+                Console.WriteLine( item.Id + " " + item.Mileage + " " + item.Registration);            }
             #endregion
             #region Q5
             Console.WriteLine("Question 5");
