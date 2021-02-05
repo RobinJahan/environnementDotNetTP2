@@ -53,12 +53,16 @@ namespace TP2
                                 .Distinct()
                                 .Max(y => y.Mileage));
             foreach (var item in r4){
-                Console.WriteLine( item.Id + " " + item.Mileage + " " + item.Registration);            }
+                Console.WriteLine( item.Id + " " + item.Mileage + " " + item.Registration);            
+            }
             #endregion
             #region Q5
             Console.WriteLine("Question 5");
             // Afficher le classement des types de voiture par nombre de voiture unique présentes du plus grand au plus petit.
-
+            var r5 = FakeDb.Instance.Users.SelectMany(x => x.Cars).GroupBy(x => x.Type).OrderByDescending(x => x.Count()).Distinct();
+            foreach (var item in r5){
+                Console.WriteLine( item.Key.Name + " " + item.Count() );            
+            }
             #endregion
             #region Q6
             Console.WriteLine("Question 6");
