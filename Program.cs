@@ -67,12 +67,20 @@ namespace TP2
             #region Q6
             Console.WriteLine("Question 6");
             // Afficher les "Garagiste" liés à 4 voitures ou plus.
-
+            var r6 = FakeDb.Instance.Users.Where(x => x.Roles.Any(r => r.Name == "Garagiste") && x.Cars.Count() >= 4);
+            foreach (var item in r6){
+                Console.WriteLine( item.Firstname + " " + item.Lastname );            
+            }
             #endregion
             #region Q7
             Console.WriteLine("Question 7");
             // Afficher les "Controlleur" et la liste des voitures aux quelles ils sont liés.
-
+            var r7 = FakeDb.Instance.Users.Where(x => x.Roles.Any(r => r.Name == "Controlleur"));
+            foreach (var item in r7){
+                foreach (var car in item.Cars){
+                Console.WriteLine("Voiture " + car.Id + ", plaque : " + car.Registration);
+                }            
+            }
             #endregion
             Console.ReadKey();
         }
